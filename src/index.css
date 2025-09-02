@@ -15,6 +15,8 @@ body {
     #5c6370 100%
   );
   background-attachment: fixed;
+  margin: 0;
+  padding: 0;
 }
 
 .expense-container {
@@ -43,6 +45,7 @@ body {
   margin-bottom: 10px;
   background: linear-gradient(120deg, #ffffff, #f4f5f7);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 .expense-item:hover {
   transform: scale(1.02);
@@ -52,15 +55,12 @@ body {
 .expense-item.income {
   border-right: 5px solid #00b84d;
 }
-
 .expense-item.expense {
   border-right: 5px solid #ff3c3c;
 }
-
 .expense-item.income .expense-amount {
   color: #00b84d;
 }
-
 .expense-item.expense .expense-amount {
   color: #ff3c3c;
 }
@@ -73,21 +73,19 @@ body {
   margin-top: 20px;
   background: linear-gradient(160deg, #fdfdfd, #f1f3f6);
 }
-
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin-bottom: 10px;
 }
-
 input {
   padding: 10px;
   border: 1px solid rgba(200, 200, 200, 0.5);
   border-radius: 5px;
 }
 
-.add-amount-btn  {
+.add-amount-btn {
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -103,13 +101,14 @@ input {
 }
 
 .balance-container {
-  background: linear-gradient(145deg, rgb(182, 190, 240)0,#4c63eb, #0422e2);
+  background: linear-gradient(145deg, rgb(182, 190, 240) 0, #4c63eb, #0422e2);
   border-radius: 10px;
   padding: 20px;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
 }
-
 .currency-item {
   display: flex;
   flex-direction: column;
@@ -120,22 +119,20 @@ input {
   border-radius: 10px;
   padding: 20px 30px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+  flex: 1;
 }
-
 .currency-item .title {
   font-size: 14px;
   text-transform: uppercase;
 }
-
 .currency-item .amount {
   font-size: 24px;
   font-weight: bold;
 }
-
 .currency-item .amount.income {
   color: #90ff90;
 }
-
 .currency-item .amount.expense {
   color: #ff9090;
 }
@@ -168,16 +165,52 @@ input {
   background-color: #f11818;
   color: #fff;
   padding: 10px;
-  border-radius: 5px;
 }
-.delete-button-overlay button:hover{
+.delete-button-overlay button:hover {
   background: linear-gradient(135deg, rgb(88, 2, 2) 20%, #ec2323 75%);
   transform: translateY(-1px);
-}
-.expense-item {
-  position: relative;
 }
 .expense-item:hover .delete-button-overlay {
   opacity: 1;
   transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .expense-container {
+    padding: 15px;
+    margin: 20px;
+    max-width: 100%;
+  }
+  .expense-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .balance-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .currency-item {
+    width: 100%;
+    max-width: 250px;
+  }
+  input, .add-amount-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .currency-item {
+    padding: 15px;
+  }
+  .currency-item .title {
+    font-size: 12px;
+  }
+  .currency-item .amount {
+    font-size: 18px;
+  }
+  .add-amount-btn {
+    font-size: 13px;
+  }
 }
