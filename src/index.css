@@ -14,11 +14,16 @@ body {
     #7f869a 75%,
     #5c6370 100%
   );
+
   background-attachment: fixed;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden; 
 }
-
 .expense-container {
   background: linear-gradient(145deg, rgba(96, 108, 117, 0.9), rgba(245, 246, 250, 0.85));
   backdrop-filter: blur(8px);
@@ -26,9 +31,15 @@ body {
   border-radius: 15px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
   max-width: 700px;
-  width: 90%;
-  margin: 50px auto;
+  width: 100%;
+  margin: 40px 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.expense-container * {
+  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -49,13 +60,12 @@ body {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   word-break: break-word;
-  flex-wrap: wrap; /* ✅ prevents text overflow */
+  flex-wrap: wrap;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .expense-item > * {
-  flex: 1 1 auto; /* ✅ makes child elements shrink properly */
+  flex: 1 1 auto;
   min-width: 0;
 }
 
@@ -64,27 +74,10 @@ body {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
 }
 
-.expense-item.income {
-  border-right: 5px solid #00b84d;
-}
-.expense-item.expense {
-  border-right: 5px solid #ff3c3c;
-}
-.expense-item.income .expense-amount {
-  color: #00b84d;
-}
-.expense-item.expense .expense-amount {
-  color: #ff3c3c;
-}
-
-.expense-item.income:hover {
-  box-shadow: 0 6px 15px rgba(0, 184, 77, 0.4);
-  transform: scale(1.03);
-}
-.expense-item.expense:hover {
-  box-shadow: 0 6px 15px rgba(255, 60, 60, 0.4);
-  transform: scale(1.03);
-}
+.expense-item.income { border-right: 5px solid #00b84d; }
+.expense-item.expense { border-right: 5px solid #ff3c3c; }
+.expense-item.income .expense-amount { color: #00b84d; }
+.expense-item.expense .expense-amount { color: #ff3c3c; }
 
 .expense-form {
   padding: 10px;
@@ -92,6 +85,7 @@ body {
   border-radius: 8px;
   margin-top: 20px;
   background: linear-gradient(160deg, #fdfdfd, #f1f3f6);
+  width: 100%; 
 }
 
 .form-group {
@@ -99,6 +93,7 @@ body {
   flex-direction: column;
   gap: 5px;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 input {
@@ -106,7 +101,6 @@ input {
   border: 1px solid rgba(200, 200, 200, 0.5);
   border-radius: 5px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .add-amount-btn {
@@ -116,7 +110,7 @@ input {
   background: linear-gradient(135deg, #5c6bf0, #3b4de5);
   color: #fff;
   cursor: pointer;
-  width: 100%;
+  width: 100%; 
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -133,6 +127,7 @@ input {
   justify-content: space-around;
   gap: 10px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .currency-item {
@@ -149,7 +144,6 @@ input {
   flex: 1;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box;
 }
 
 .currency-item:hover {
@@ -157,23 +151,10 @@ input {
   box-shadow: 0 8px 18px rgba(20, 20, 220, 0.4);
 }
 
-.currency-item .title {
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-.currency-item .amount {
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.currency-item .amount.income {
-  color: #90ff90;
-}
-
-.currency-item .amount.expense {
-  color: #ff9090;
-}
+.currency-item .title { font-size: 14px; text-transform: uppercase; }
+.currency-item .amount { font-size: 32px; font-weight: bold; }
+.currency-item .amount.income { color: #90ff90; }
+.currency-item .amount.expense { color: #ff9090; }
 
 .error {
   color: #dc0202;
@@ -216,11 +197,10 @@ input {
   transform: translateX(0);
 }
 
-/* ✅ Mobile & Tablet Fixes */
 @media (max-width: 768px) {
   .expense-container {
     padding: 15px;
-    margin-top: 20px;
+    margin: 20px auto;
     width: 95%;
   }
 
@@ -228,12 +208,7 @@ input {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    width: 100%;
     text-align: left;
-  }
-
-  .expense-item > * {
-    width: 100%;
   }
 
   .currency-item {
@@ -241,12 +216,9 @@ input {
     max-width: 300px;
   }
 
-  .currency-item .amount {
-    font-size: 28px;
-  }
+  .currency-item .amount { font-size: 28px; }
 
-  input,
-  .add-amount-btn {
+  input, .add-amount-btn {
     font-size: 14px;
     padding: 8px;
   }
@@ -255,28 +227,21 @@ input {
 @media (max-width: 480px) {
   .expense-container {
     padding: 15px;
-    margin-top: 20px;
-    width: 100%;
+    margin: 15px auto;
+    width: 95%;
   }
 
   .expense-item {
     padding: 10px;
     flex-direction: column;
     gap: 5px;
-    width: 100%;
   }
 
   .currency-item {
     padding: 15px;
-    min-width: auto;
     width: 100%;
   }
 
-  .currency-item .amount {
-    font-size: 24px;
-  }
-
-  .add-amount-btn {
-    font-size: 13px;
-  }
+  .currency-item .amount { font-size: 24px; }
+  .add-amount-btn { font-size: 13px; }
 }
