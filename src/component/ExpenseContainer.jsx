@@ -7,7 +7,7 @@ function ExpenseContainer() {
   const [expense, setExpense] = useState([]);
   async function fetchExpenses() {
     try {
-      const response = await fetch("http://localhost:3333/expenses");
+      const response = await fetch("https://backend-expensetracker-h18w.onrender.com/expenses");
       const data = await response.json();
       setExpense(data.expenses);
       console.log(data);
@@ -22,7 +22,7 @@ function ExpenseContainer() {
   
 async function addExpense(title, amount) {
   try {
-    const response = await fetch('http://localhost:3333/add-expense', {
+    const response = await fetch('https://backend-expensetracker-h18w.onrender.com/add-expense', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ async function addExpense(title, amount) {
   async function deleteExpense(id) {
     try {
       const response = await fetch(
-        `http://localhost:3333/delete-expense/${id}`,
+        `https://backend-expensetracker-h18w.onrender.com/delete-expense/${id}`,
         {
           method: "DELETE",
         }
