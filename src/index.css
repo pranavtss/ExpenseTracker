@@ -25,11 +25,12 @@ body {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top: 50px;
+  max-width: 700px;
+  width: 90%;
+  margin: 50px auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .expense-container:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
@@ -46,7 +47,9 @@ body {
   background: linear-gradient(120deg, #ffffff, #f4f5f7);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+  word-wrap: break-word;
 }
+
 .expense-item:hover {
   transform: scale(1.02);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
@@ -65,24 +68,36 @@ body {
   color: #ff3c3c;
 }
 
+.expense-item.income:hover {
+  box-shadow: 0 6px 15px rgba(0, 184, 77, 0.4);
+  transform: scale(1.03);
+}
+.expense-item.expense:hover {
+  box-shadow: 0 6px 15px rgba(255, 60, 60, 0.4);
+  transform: scale(1.03);
+}
+
 .expense-form {
   padding: 10px;
-  padding-top: 0;
   border: 1px solid rgba(200, 200, 200, 0.4);
   border-radius: 8px;
   margin-top: 20px;
   background: linear-gradient(160deg, #fdfdfd, #f1f3f6);
 }
+
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin-bottom: 10px;
 }
+
 input {
   padding: 10px;
   border: 1px solid rgba(200, 200, 200, 0.5);
   border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .add-amount-btn {
@@ -95,6 +110,7 @@ input {
   width: 100%;
   transition: background 0.3s ease, transform 0.2s ease;
 }
+
 .add-amount-btn:hover {
   background: linear-gradient(135deg, #3b4de5, #000000);
   transform: translateY(-1px);
@@ -106,9 +122,10 @@ input {
   padding: 20px;
   display: flex;
   justify-content: space-around;
+  gap: 10px;
   flex-wrap: wrap;
-  gap: 15px;
 }
+
 .currency-item {
   display: flex;
   flex-direction: column;
@@ -121,18 +138,29 @@ input {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   min-width: 120px;
   flex: 1;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.currency-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(20, 20, 220, 0.4);
+}
+
 .currency-item .title {
   font-size: 14px;
   text-transform: uppercase;
 }
+
 .currency-item .amount {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
 }
+
 .currency-item .amount.income {
   color: #90ff90;
 }
+
 .currency-item .amount.expense {
   color: #ff9090;
 }
@@ -157,6 +185,7 @@ input {
   transition: all 0.3s ease-in-out;
   transform: translateX(10%);
 }
+
 .delete-button-overlay button {
   border: none;
   border-radius: 5px;
@@ -166,10 +195,12 @@ input {
   color: #fff;
   padding: 10px;
 }
+
 .delete-button-overlay button:hover {
   background: linear-gradient(135deg, rgb(88, 2, 2) 20%, #ec2323 75%);
   transform: translateY(-1px);
 }
+
 .expense-item:hover .delete-button-overlay {
   opacity: 1;
   transform: translateX(0);
@@ -178,38 +209,48 @@ input {
 @media (max-width: 768px) {
   .expense-container {
     padding: 15px;
-    margin: 20px;
-    max-width: 100%;
+    margin-top: 20px;
+    width: 95%;
   }
+
   .expense-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    width: 100%;
   }
-  .balance-container {
-    flex-direction: column;
-    align-items: center;
-  }
+
   .currency-item {
     width: 100%;
-    max-width: 250px;
+    max-width: 300px;
   }
-  input, .add-amount-btn {
+
+  .currency-item .amount {
+    font-size: 28px;
+  }
+
+  input,
+  .add-amount-btn {
     font-size: 14px;
     padding: 8px;
   }
 }
 
 @media (max-width: 480px) {
+  .expense-container {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
   .currency-item {
     padding: 15px;
+    min-width: 100px;
   }
-  .currency-item .title {
-    font-size: 12px;
-  }
+
   .currency-item .amount {
-    font-size: 18px;
+    font-size: 24px;
   }
+
   .add-amount-btn {
     font-size: 13px;
   }
