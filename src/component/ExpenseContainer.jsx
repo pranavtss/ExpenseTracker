@@ -5,33 +5,48 @@ import BalanceContainer from "./BalanceContainer.jsx";
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3333";
 function ExpenseContainer({ user, onLogout }) {
   const [expense, setExpense] = useState([]);
+  const normalizedUsername = user?.username?.trim().toLowerCase();
+
   async function fetchExpenses() {
+    if (!normalizedUsername) {
+      setExpense([]);
+      return;
+    }
+
     try {
-      const response = await fetch(`${API_BASE_URL}/expenses`);
+      const response = await fetch(`${API_BASE_URL}/expenses?username=${encodeURIComponent(normalizedUsername)}`);
       const data = await response.json();
       setExpense(data.expenses);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   }
+
   React.useEffect(() => {
     fetchExpenses();
-  }, []);
+  }, [normalizedUsername]);
 
   
 async function addExpense(title, amount) {
+  if (!normalizedUsername) return;
+
   try {
     const response = await fetch(`${API_BASE_URL}/add-expense`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ title, amount })
+      body: JSON.stringify({ username: normalizedUsername, title, amount })
     });
+
     const data = await response.json();
+
+    if (!response.ok) {
+      console.log(data.message || "Error adding expense");
+      return;
+    }
+
     setExpense((prev) => [...prev, data.expense]);
-    console.log(data);
     fetchExpenses();
   } catch (error) {
     console.log(error);
@@ -39,13 +54,21 @@ async function addExpense(title, amount) {
 }
 
   async function deleteExpense(id) {
+    if (!normalizedUsername) return;
+
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/delete-expense/${id}`,
+      const response = await fetch(`${API_BASE_URL}/delete-expense/${id}?username=${encodeURIComponent(normalizedUsername)}`,
         {
           method: "DELETE",
         }
       );
+
+      if (!response.ok) {
+        const data = await response.json();
+        console.log(data.message || "Error deleting expense");
+        return;
+      }
+
       fetchExpenses();
     } catch (error) {
       console.log(error);
