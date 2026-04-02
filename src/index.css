@@ -32,32 +32,6 @@ body {
   align-items: center;
 }
 
-.top-nav {
-  margin-top: 22px;
-  display: flex;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-}
-
-.page-btn {
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-weight: 600;
-  background: #e9ecf7;
-  color: #1b2350;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.page-btn.active {
-  background: linear-gradient(145deg, #203a93, #355ae0);
-  color: #ffffff;
-}
-
 .expense-container {
   background: linear-gradient(145deg, rgba(96, 108, 117, 0.9), rgba(245, 246, 250, 0.85));
   backdrop-filter: blur(8px);
@@ -80,6 +54,57 @@ body {
 .expense-container:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 10px;
+}
+
+.session-text {
+  color: #1c2754;
+  font-weight: 700;
+}
+
+.logout-btn {
+  border: none;
+  border-radius: 8px;
+  background: #233783;
+  color: #fff;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.auth-page {
+  margin-top: 50px;
+  max-width: 440px;
+}
+
+.auth-subtitle {
+  margin-top: -5px;
+  color: #374176;
+}
+
+.auth-form {
+  margin-top: 8px;
+}
+
+.auth-message {
+  color: #ad1f1f;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.auth-switch-btn {
+  margin-top: 12px;
+  border: none;
+  background: transparent;
+  color: #1d3388;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .expense-item {
@@ -294,8 +319,9 @@ input {
 }
 
 @media (max-width: 768px) {
-  .top-nav {
-    margin-top: 14px;
+  .session-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .expense-container {

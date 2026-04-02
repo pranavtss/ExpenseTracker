@@ -1,29 +1,28 @@
 import React, { useState } from 'react'
 import './index.css'
 import ExpenseContiner from './component/ExpenseContainer'
-import UserPage from './component/UserPage'
+import AuthPage from './component/AuthPage'
 
 function App() {
-  const [activePage, setActivePage] = useState('tracker')
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('expenseTrackerUser')
+    return storedUser ? JSON.parse(storedUser) : null
+  })
 
   return (
     <>
       <div className='app-shell'>
-        <div className='top-nav'>
-          <button
-            className={`page-btn ${activePage === 'tracker' ? 'active' : ''}`}
-            onClick={() => setActivePage('tracker')}
-          >
-            Tracker
-          </button>
-          <button
-            className={`page-btn ${activePage === 'user' ? 'active' : ''}`}
-            onClick={() => setActivePage('user')}
-          >
-            User
-          </button>
-        </div>
-        {activePage === 'tracker' ? <ExpenseContiner /> : <UserPage />}
+        {user ? (
+          <ExpenseContiner
+            user={user}
+            onLogout={() => {
+              localStorage.removeItem('expenseTrackerUser')
+              setUser(null)
+            }}
+          />
+        ) : (
+          <AuthPage onAuthSuccess={setUser} />
+        )}
       </div>
     </>
   )
