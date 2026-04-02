@@ -3,11 +3,12 @@ import Form from "./Form.jsx";
 import { v4 as uid } from "uuid";
 import History from "./History.jsx";
 import BalanceContainer from "./BalanceContainer.jsx";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3333";
 function ExpenseContainer() {
   const [expense, setExpense] = useState([]);
   async function fetchExpenses() {
     try {
-      const response = await fetch("https://backend-expensetracker-h18w.onrender.com/expenses");
+      const response = await fetch(`${API_BASE_URL}/expenses`);
       const data = await response.json();
       setExpense(data.expenses);
       console.log(data);
@@ -22,7 +23,7 @@ function ExpenseContainer() {
   
 async function addExpense(title, amount) {
   try {
-    const response = await fetch('https://backend-expensetracker-h18w.onrender.com/add-expense', {
+    const response = await fetch(`${API_BASE_URL}/add-expense`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -30,7 +31,7 @@ async function addExpense(title, amount) {
       body: JSON.stringify({ title, amount })
     });
     const data = await response.json();
-    setExpense((prev) => [...prev, data]);
+    setExpense((prev) => [...prev, data.expense]);
     console.log(data);
     fetchExpenses();
   } catch (error) {
@@ -41,7 +42,7 @@ async function addExpense(title, amount) {
   async function deleteExpense(id) {
     try {
       const response = await fetch(
-        `https://backend-expensetracker-h18w.onrender.com/delete-expense/${id}`,
+        `${API_BASE_URL}/delete-expense/${id}`,
         {
           method: "DELETE",
         }

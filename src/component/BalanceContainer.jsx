@@ -5,7 +5,7 @@ function BalanceContainer(props) {
     let income = 0;
     let expenses = 0;
   console.log(props.expense);
-    props.expense.forEach((item) => {
+    (props.expense || []).forEach((item) => {
         if (item.amount > 0) {
             income += parseInt(item.amount);
         }

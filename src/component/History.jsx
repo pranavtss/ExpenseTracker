@@ -6,7 +6,7 @@ function History(props) {
         <div className='history'>
             <h1>History</h1>
             {props.expense.map((item) => (
-                <ExpenseItem key={item.id} expense={item} deleteExpense={props.deleteExpense}/>
+                <ExpenseItem key={item._id} expense={item} deleteExpense={props.deleteExpense}/>
                 
             ))}
         </div>

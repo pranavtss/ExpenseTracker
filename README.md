@@ -45,3 +45,16 @@ npm install
 
 # Start development server
 npm run dev  
+
+```
+
+---
+
+## 🚀 Deployment Setup
+
+Set `VITE_API_URL` to the deployed backend URL before building the frontend.
+
+- Example: `https://backend-expensetracker-h18w.onrender.com`
+- Copy `.env.example` to `.env` for local development if needed
+- Build command: `npm run build`
+- Output directory: `dist`
