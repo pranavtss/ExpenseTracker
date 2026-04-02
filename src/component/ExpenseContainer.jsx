@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Form from "./Form.jsx";
-import { v4 as uid } from "uuid";
 import History from "./History.jsx";
 import BalanceContainer from "./BalanceContainer.jsx";
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3333";

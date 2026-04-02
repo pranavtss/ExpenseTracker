@@ -24,6 +24,40 @@ body {
   align-items: flex-start;
   overflow-x: hidden; 
 }
+
+.app-shell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-nav {
+  margin-top: 22px;
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+}
+
+.page-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  background: #e9ecf7;
+  color: #1b2350;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-btn.active {
+  background: linear-gradient(145deg, #203a93, #355ae0);
+  color: #ffffff;
+}
+
 .expense-container {
   background: linear-gradient(145deg, rgba(96, 108, 117, 0.9), rgba(245, 246, 250, 0.85));
   backdrop-filter: blur(8px);
@@ -119,6 +153,28 @@ input {
   transform: translateY(-1px);
 }
 
+.type-toggle {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 15px;
+}
+
+.toggle-btn {
+  border: 1px solid #c5c9d8;
+  background: #f7f8fc;
+  color: #22305f;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(145deg, #0c6e3d, #1a9748);
+  border-color: #0d743f;
+  color: #fff;
+}
+
 .balance-container {
   background: linear-gradient(145deg, rgb(182, 190, 240) 0, #4c63eb, #0422e2);
   border-radius: 10px;
@@ -197,7 +253,51 @@ input {
   transform: translateX(0);
 }
 
+.user-page h1 {
+  margin-top: 5px;
+}
+
+.user-subtitle {
+  margin: 0 0 14px;
+  color: #2d3463;
+}
+
+.user-card {
+  background: #f8f9ff;
+  border: 1px solid #d6dcf2;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e6e9f7;
+  padding: 10px 0;
+}
+
+.user-row:last-child {
+  border-bottom: none;
+}
+
+.user-row .label {
+  color: #596186;
+}
+
+.user-row .value {
+  font-weight: 700;
+  color: #1e2852;
+}
+
+.user-row .online {
+  color: #0f8b44;
+}
+
 @media (max-width: 768px) {
+  .top-nav {
+    margin-top: 14px;
+  }
+
   .expense-container {
     padding: 15px;
     margin: 20px auto;
