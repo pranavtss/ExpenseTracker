@@ -16,9 +16,17 @@ function ExpenseContainer({ user, onLogout }) {
     try {
       const response = await fetch(`${API_BASE_URL}/expenses?username=${encodeURIComponent(normalizedUsername)}`);
       const data = await response.json();
-      setExpense(data.expenses);
+
+      if (!response.ok) {
+        console.log(data.message || "Error fetching expenses");
+        setExpense([]);
+        return;
+      }
+
+      setExpense(Array.isArray(data.expenses) ? data.expenses : []);
     } catch (error) {
       console.log(error);
+      setExpense([]);
     }
   }
 
