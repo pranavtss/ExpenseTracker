@@ -24,7 +24,7 @@ Track your daily income and expenses with a clean and minimal interface.
 ---
 
 ## 🌐 Live Demo & Backend  
-- 🔗 **Frontend Live Demo**: [Expense Tracker App](https://expense-tracker-puce-beta-84.vercel.app/)  
+- 🔗 **Frontend Live Demo**: [Expense Tracker App](https://expensetracker-vdup.onrender.com/)  
 - 🔗 **Backend Repository**: [Backend-ExpenseTracker](https://github.com/pranavtss/Backend-ExpenseTracker.git)  
 
 ---
